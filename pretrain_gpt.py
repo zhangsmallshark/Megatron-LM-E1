@@ -18,6 +18,14 @@ from megatron.utils import get_ltor_masks_and_position_ids
 from megatron.utils import average_losses_across_data_parallel_group
 from megatron.arguments import core_transformer_config_from_args
 
+
+from dist import setup_torch
+
+setup_torch(
+    backend='ddp',
+    port='5432',
+)
+
 def model_provider(pre_process=True, post_process=True):
     """Build the model."""
     args = get_args()
